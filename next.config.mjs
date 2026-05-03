@@ -4,12 +4,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**", // এটি যেকোনো ডোমেইন অ্যালাউ করবে
+        hostname: "**",
         port: "",
-        pathname: "**", // এটি ডোমেইনের ভেতরের যেকোনো পাথ অ্যালাউ করবে
+        pathname: "**",
       },
       {
-        protocol: "http", // অনেক সময় কিছু সোর্স http হতে পারে, তাই এটিও যোগ করা নিরাপদ
+        protocol: "http",
         hostname: "**",
         port: "",
         pathname: "**",

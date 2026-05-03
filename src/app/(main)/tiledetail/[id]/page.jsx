@@ -1,18 +1,15 @@
 import React from "react";
-import tilesData from "../../../data/tile.json"; // Path আপানার প্রজেক্ট অনুযায়ী চেক করুন
+import tilesData from "../../../../data/tile.json";
 import Image from "next/image";
 import Link from "next/link";
 
 const TileDetailPage = async ({ params }) => {
-  // URL থেকে আইডি নেওয়া (Next.js ডাইনামিক রাউট params)
   const { id } = await params;
   console.log(id, "Paasind id");
 
-  // JSON থেকে ডাটা খুঁজে বের করা
   const tile = tilesData.tiles.find((t) => t.id === parseInt(id));
   console.log(tile, "Paasind tile");
 
-  // ডাটা না পাওয়া গেলে এরর মেসেজ
   if (!tile) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center space-y-4">
@@ -42,7 +39,7 @@ const TileDetailPage = async ({ params }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left: Product Image */}
-          <div className="relative h-[400px] md:h-[600px] w-full bg-gray-100 rounded-none border border-gray-200 overflow-hidden">
+          <div className="relative h-100 md:h-150 w-full bg-gray-100 rounded-none border border-gray-200 overflow-hidden">
             <Image
               src={tile.image}
               alt={tile.title}

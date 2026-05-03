@@ -10,23 +10,26 @@ export default function AccountPage() {
   };
 
   return (
-    // 'pt-24' add kora hoyeche navbar theke gap rakhar jonno
-    <div className="min-h-screen bg-[#1a1a1a] text-white pt-24 pb-12 px-4 md:px-8">
+    // Changed bg to a soft off-white and text to slate-900
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900 pt-24 pb-12 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Main Grid Container */}
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8 items-start">
           {/* LEFT SIDE: User Profile Card */}
-          <div className="bg-[#2a2a2a] rounded-3xl p-8 border border-gray-800 flex flex-col items-center text-center shadow-2xl">
+          <div className="bg-white rounded-3xl p-8 border border-slate-200 flex flex-col items-center text-center shadow-sm">
             <div className="avatar placeholder mb-6">
-              <div className="bg-white text-[#4a4a8a] w-32 h-32 rounded-full ring-4 ring-[#7c66dc]/20">
+              {/* Avatar now has a subtle primary-colored background */}
+              <div className="bg-blue-50 text-blue-600 w-32 h-32 rounded-full ring-4 ring-blue-100">
                 <span className="text-4xl font-bold">
                   {accountInfo.avatarInitials}
                 </span>
               </div>
             </div>
-            <h2 className="text-2xl font-bold mb-1">{accountInfo.fullName}</h2>
-            <p className="text-gray-400 text-sm mb-8">{accountInfo.email}</p>
-            <button className="btn btn-ghost bg-gray-100/10 hover:bg-gray-100/20 text-white w-full rounded-xl capitalize font-normal border-none">
+            <h2 className="text-2xl font-bold mb-1 text-slate-800">
+              {accountInfo.fullName}
+            </h2>
+            <p className="text-slate-500 text-sm mb-8">{accountInfo.email}</p>
+            <button className="btn btn-ghost bg-slate-100 hover:bg-slate-200 text-slate-700 w-full rounded-xl capitalize font-medium border-none transition-colors">
               Update Info
             </button>
           </div>
@@ -34,10 +37,10 @@ export default function AccountPage() {
           {/* RIGHT SIDE: Account Information */}
           <div className="space-y-6">
             <div className="mb-8">
-              <h3 className="text-2xl font-semibold mb-2">
+              <h3 className="text-2xl font-bold mb-2 text-slate-800">
                 Account Information
               </h3>
-              <p className="text-gray-500 text-sm">
+              <p className="text-slate-500 text-sm">
                 Review and manage your personal account details.
               </p>
             </div>
@@ -52,13 +55,14 @@ export default function AccountPage() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4"
                 >
-                  <span className="text-xs uppercase tracking-widest text-gray-500 font-bold ml-1">
+                  <span className="text-xs uppercase tracking-widest text-slate-400 font-bold ml-1">
                     {item.label}
                   </span>
-                  <div className="bg-[#2a2a2a] py-4 px-6 rounded-2xl border border-gray-800 w-full sm:w-[70%] text-right shadow-inner">
-                    <span className="text-gray-200 font-medium">
+                  {/* Row backgrounds changed to white with light borders */}
+                  <div className="bg-white py-4 px-6 rounded-2xl border border-slate-200 w-full sm:w-[70%] sm:text-right shadow-sm">
+                    <span className="text-slate-700 font-semibold">
                       {item.value}
                     </span>
                   </div>

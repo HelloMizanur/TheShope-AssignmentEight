@@ -1,9 +1,8 @@
 import React from "react";
-import tilesData from "../../data/tile.json";
-import AllTilesClient from "./../../Components/AllTilesClient";
+import tilesData from "../../../data/tile.json";
+import AllTilesClient from "./../../../Components/AllTilesClient";
 
 const AllTiles = () => {
-  // ক্যাটাগরিগুলো সার্ভারেই প্রসেস করে ক্লায়েন্টে পাঠিয়ে দিচ্ছি
   const categories = [
     "All",
     ...new Set(tilesData.tiles.map((t) => t.category)),
@@ -16,7 +15,6 @@ const AllTiles = () => {
           Browse the Gallery
         </h1>
 
-        {/* ক্লায়েন্ট কম্পোনেন্ট যেখানে ইন্টারঅ্যাক্টিভিটি আছে */}
         <AllTilesClient tiles={tilesData.tiles} categories={categories} />
       </header>
     </div>
