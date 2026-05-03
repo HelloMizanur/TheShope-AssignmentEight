@@ -1,7 +1,26 @@
 import React from "react";
+import tilesData from "../../data/tile.json";
+import AllTilesClient from "./../../Components/AllTilesClient";
 
-const AllTilespage = () => {
-  return <div>All tiles</div>;
+const AllTiles = () => {
+  // ক্যাটাগরিগুলো সার্ভারেই প্রসেস করে ক্লায়েন্টে পাঠিয়ে দিচ্ছি
+  const categories = [
+    "All",
+    ...new Set(tilesData.tiles.map((t) => t.category)),
+  ];
+
+  return (
+    <div className="min-h-screen bg-white">
+      <header className="pt-10 pb-6 px-4 max-w-7xl mx-auto">
+        <h1 className="text-xl font-medium text-gray-700 mb-6">
+          Browse the Gallery
+        </h1>
+
+        {/* ক্লায়েন্ট কম্পোনেন্ট যেখানে ইন্টারঅ্যাক্টিভিটি আছে */}
+        <AllTilesClient tiles={tilesData.tiles} categories={categories} />
+      </header>
+    </div>
+  );
 };
 
-export default AllTilespage;
+export default AllTiles;

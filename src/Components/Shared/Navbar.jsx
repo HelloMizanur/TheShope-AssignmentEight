@@ -42,9 +42,12 @@ const Navbar = () => {
           <div className="bg-[#7c66dc] p-1.5 rounded-lg shrink-0">
             <span className="font-bold text-xs text-white">TG</span>
           </div>
-          <span className="text-xl font-semibold tracking-tight hidden sm:inline-block">
+          <NavLink
+            href={"/"}
+            className="text-xl font-semibold tracking-tight hidden sm:inline-block"
+          >
             TileGallery
-          </span>
+          </NavLink>
         </div>
       </div>
 
