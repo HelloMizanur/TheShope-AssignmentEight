@@ -1,4 +1,4 @@
-"use client"; // শুধু এই কম্পোনেন্টটি ক্লায়েন্ট সাইডে চলবে
+"use client";
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
