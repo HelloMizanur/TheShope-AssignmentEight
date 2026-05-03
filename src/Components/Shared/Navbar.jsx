@@ -1,21 +1,22 @@
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
+import NavLink from "./NavLink";
 
 const Navbar = () => {
   const list = (
     <>
       <li>
-        <Link href={"/"}>Home</Link>
+        <NavLink href={"/"}>Home</NavLink>
       </li>
       <li>
-        <Link href={"/alltiles"} className="hover:text-gray-300">
+        <NavLink href={"/alltiles"} className="hover:text-gray-300">
           All Tiles
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link href={"/myprofile"} className="hover:text-gray-300">
+        <NavLink href={"/myprofile"} className="hover:text-gray-300">
           My Profile
-        </Link>
+        </NavLink>
       </li>
     </>
   );
