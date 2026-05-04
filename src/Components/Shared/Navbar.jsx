@@ -1,8 +1,13 @@
+"use client";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import NavLink from "./NavLink";
+import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 
 const Navbar = () => {
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
   const list = (
     <>
       <li>
@@ -51,21 +56,46 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* --- CENTER: Menu Items (Hidden on Mobile) --- */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 gap-4">{list}</ul>
       </div>
 
-      {/* --- RIGHT: Avatar & Logout --- */}
       <div className="navbar-end gap-2 sm:gap-4">
-        <div className="avatar placeholder">
-          <div className="bg-[#e0e0ff] text-[#4a4a8a] w-10 rounded-full flex justify-center items-center">
-            <span className="text-sm font-bold">JD</span>
-          </div>
-        </div>
-        <button className="btn btn-outline btn-sm border-gray-500 text-white hover:bg-gray-700 hover:border-gray-400 capitalize px-4 sm:px-6 font-normal">
-          Logout
-        </button>
+        {isPending ? (
+          <span className="loading loading-spinner text-neutral"></span>
+        ) : user ? (
+          <>
+            <div className="avatar placeholder">
+              <div className="bg-[#e0e0ff] text-[#4a4a8a] w-10 rounded-full relative overflow-hidden flex justify-center items-center">
+                {user?.image ? (
+                  <Image
+                    src={user.image}
+                    alt={user.name || "User"}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <span className="text-xl font-bold">
+                    {user?.name?.charAt(0) || "U"}
+                  </span>
+                )}
+              </div>
+            </div>
+            <p>Hello, {user.name}</p>
+            <button
+              className="btn btn-outline btn-sm border-gray-500 text-white hover:bg-gray-700 hover:border-gray-400 capitalize px-4 sm:px-6 font-normal"
+              onClick={async () => {
+                await authClient.signOut();
+              }}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <button className="btn btn-outline btn-sm border-gray-500 text-white hover:bg-gray-700 hover:border-gray-400 capitalize px-4 sm:px-6 font-normal">
+            <Link href={"/login"}> Login</Link>
+          </button>
+        )}
       </div>
     </div>
   );
