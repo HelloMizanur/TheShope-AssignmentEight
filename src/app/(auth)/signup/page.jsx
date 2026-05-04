@@ -12,7 +12,6 @@ const SignUpPage = () => {
   return (
     <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white p-8 rounded-3xl border border-slate-200 shadow-xl">
-        {/* Header Section */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-extrabold text-slate-800">
             Create Account
@@ -22,9 +21,7 @@ const SignUpPage = () => {
           </p>
         </div>
 
-        {/* Form Section */}
         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
-          {/* Full Name Input */}
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text font-semibold text-slate-600 uppercase text-xs tracking-wider">
@@ -56,7 +53,6 @@ const SignUpPage = () => {
             />
           </div>
 
-          {/* Image URL Input (New Field) */}
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text font-semibold text-slate-600 uppercase text-xs tracking-wider">
@@ -88,7 +84,6 @@ const SignUpPage = () => {
             />
           </div>
 
-          {/* Sign Up Button */}
           <div className="pt-2">
             <button className="btn btn-primary w-full rounded-xl bg-blue-600 border-none hover:bg-blue-700 text-white capitalize font-bold text-lg h-14 shadow-lg shadow-blue-200 transition-all active:scale-[0.98]">
               Sign Up
@@ -96,12 +91,10 @@ const SignUpPage = () => {
           </div>
         </form>
 
-        {/* Divider */}
         <div className="divider text-slate-300 text-xs my-8 uppercase">
           Or continue with
         </div>
 
-        {/* Social Login */}
         <div className="flex flex-col gap-4">
           <button
             type="button"
