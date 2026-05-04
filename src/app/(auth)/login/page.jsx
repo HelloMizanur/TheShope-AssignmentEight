@@ -3,16 +3,23 @@ import React from "react";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
+import { authClient } from "@/lib/auth-client";
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const { email, password } = data;
+    const { data: res, error } = await authClient.signIn.email({
+      email: email,
+      password: password,
+      rememberMe: true,
+      callbackURL: "/",
+    });
+    console.log(res, error);
   };
   return (
     <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white p-8 rounded-3xl border border-slate-200 shadow-xl">
-        {/* Header Section */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-extrabold text-slate-800">
             Welcome Back

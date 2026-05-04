@@ -3,11 +3,20 @@ import React from "react";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
+import { authClient } from "@/lib/auth-client";
 
 const SignUpPage = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const { name, email, picture, password } = data;
+    const { data: res, error } = await authClient.signUp.email({
+      name: name,
+      email: email,
+      password: password,
+      image: picture,
+      callbackURL: "/",
+    });
+    console.log(res, error);
   };
   return (
     <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
