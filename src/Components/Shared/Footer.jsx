@@ -52,7 +52,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">Contact Us</h3>
             <ul className="space-y-2 text-gray-300 text-sm">
               <li>support@tilegallery.com</li>
-              <li>+880 800 123 456</li>
+              <li>+880 177 73 456</li>
             </ul>
           </div>
         </div>
