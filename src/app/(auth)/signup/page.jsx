@@ -26,7 +26,7 @@ const SignUpPage = () => {
         email: email,
         password: password,
         image: picture,
-        callbackURL: "/",
+        callbackURL: "/login",
       });
 
       if (error) {
@@ -45,6 +45,11 @@ const SignUpPage = () => {
         id: toastId,
       });
     }
+  };
+  const loginWithGmail = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
   };
 
   return (
@@ -150,6 +155,7 @@ const SignUpPage = () => {
           <button
             type="button"
             className="btn btn-outline border-slate-200 rounded-xl hover:bg-slate-50 hover:text-slate-800 capitalize font-medium w-full flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
+            onClick={loginWithGmail}
           >
             <FcGoogle className="text-xl" />
             Continue with Google
