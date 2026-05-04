@@ -3,29 +3,22 @@ import { headers } from "next/headers";
 import React from "react";
 import Image from "next/image";
 import { format } from "date-fns";
-import {
-  User,
-  Mail,
-  Calendar,
-  ShieldCheck,
-  BadgeCheck,
-  PencilLine,
-} from "lucide-react";
 import { redirect } from "next/navigation";
+import { Mail, User, Calendar, ShieldCheck } from "lucide-react";
+import InfoCard from "@/Components/InfoCard";
+import Link from "next/link";
 
 export default async function AccountPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
-  // সেশন না থাকলে লগইন পেজে পাঠিয়ে দেবে
   if (!session || !session.user) {
     redirect("/login");
   }
 
   const { user } = session;
 
-  // ইউজার নেম থেকে ইনিশিয়াল বের করা (যেমন: Mizanur Rahman -> MR)
   const avatarInitials = user.name
     ? user.name
         .split(" ")
@@ -44,9 +37,10 @@ export default async function AccountPage() {
             <div className="relative mb-6">
               <div className="w-32 h-32 rounded-full ring-4 ring-blue-50 overflow-hidden bg-blue-50 flex items-center justify-center">
                 {user.image ? (
-                  <img
+                  <Image
                     src={user.image}
                     alt={user.name}
+                    fill
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -55,11 +49,6 @@ export default async function AccountPage() {
                   </span>
                 )}
               </div>
-              {user.emailVerified && (
-                <div className="absolute bottom-1 right-1 bg-white p-1 rounded-full shadow-sm">
-                  <BadgeCheck className="text-blue-500 w-6 h-6" />
-                </div>
-              )}
             </div>
 
             <h2 className="text-2xl font-bold mb-1 text-slate-800">
@@ -71,12 +60,11 @@ export default async function AccountPage() {
 
             <div className="w-full pt-6 border-t border-slate-100">
               <button className="flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white w-full py-3 rounded-xl transition-all font-medium">
-                <PencilLine className="w-4 h-4" /> Edit Profile
+                <Link href={"/myprofile/update"}>Edit Profile</Link>
               </button>
             </div>
           </div>
 
-          {/* RIGHT SIDE: Account Details */}
           <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
             <div className="mb-10">
               <h3 className="text-2xl font-bold text-slate-800 mb-2">
@@ -88,7 +76,6 @@ export default async function AccountPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Information Blocks */}
               <InfoCard
                 icon={<User className="w-5 h-5 text-blue-500" />}
                 label="Full Name"
@@ -98,7 +85,6 @@ export default async function AccountPage() {
                 icon={<Mail className="w-5 h-5 text-emerald-500" />}
                 label="Email Address"
                 value={user.email}
-                isVerified={user.emailVerified}
               />
               <InfoCard
                 icon={<Calendar className="w-5 h-5 text-orange-500" />}
@@ -113,7 +99,6 @@ export default async function AccountPage() {
               />
             </div>
 
-            {/* Extra Security Section */}
             <div className="mt-12 p-6 rounded-2xl bg-blue-50/50 border border-blue-100">
               <div className="flex items-start gap-4">
                 <div className="bg-blue-100 p-3 rounded-xl">
@@ -131,34 +116,6 @@ export default async function AccountPage() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-// Reusable Info Card Component
-function InfoCard({ icon, label, value, isCode, isVerified }) {
-  return (
-    <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50/30 hover:border-blue-100 transition-colors">
-      <div className="flex items-center gap-3 mb-3">
-        {icon}
-        <span className="text-xs font-bold uppercase tracking-widest text-slate-400">
-          {label}
-        </span>
-      </div>
-      <div className="flex items-center gap-2">
-        <p
-          className={`font-semibold text-slate-700 ${isCode ? "text-xs font-mono break-all" : "text-base"}`}
-        >
-          {value}
-        </p>
-        {isVerified !== undefined && (
-          <span
-            className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${isVerified ? "bg-emerald-100 text-emerald-600" : "bg-amber-100 text-amber-600"}`}
-          >
-            {isVerified ? "VERIFIED" : "UNVERIFIED"}
-          </span>
-        )}
       </div>
     </div>
   );
