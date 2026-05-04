@@ -1,8 +1,14 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white p-8 rounded-3xl border border-slate-200 shadow-xl">
@@ -17,7 +23,7 @@ const LoginPage = () => {
         </div>
 
         {/* Form Section */}
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
           {/* Email Input */}
           <div className="form-control w-full">
             <label className="label">
@@ -27,6 +33,8 @@ const LoginPage = () => {
             </label>
             <input
               type="email"
+              {...register("email")}
+              name="email"
               placeholder="name@example.com"
               className="input input-bordered w-full bg-slate-50 border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none transition-all"
               required
@@ -43,6 +51,8 @@ const LoginPage = () => {
               </label>
             </div>
             <input
+              {...register("password")}
+              name="password"
               type="password"
               placeholder="••••••••"
               className="input input-bordered w-full bg-slate-50 border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none transition-all"

@@ -5,10 +5,8 @@ import Link from "next/link";
 
 const TileDetailPage = async ({ params }) => {
   const { id } = await params;
-  console.log(id, "Paasind id");
 
   const tile = tilesData.tiles.find((t) => t.id === parseInt(id));
-  console.log(tile, "Paasind tile");
 
   if (!tile) {
     return (
